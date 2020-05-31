@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+import { render } from "react-dom";
 import './App.css';
 
+const apiUrl = "https://api.github.com/users";
+
 function App() {
+  const [items, setItems] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      var data = await fetch(apiUrl).then(res => {
+        return res.json();
+      });
+      //console.log(data);
+      setItems(data);
+      console.log(data);
+    }
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div class="container">
+      {items.map(item => (
+        <div class="card">
+          <img src={item.avatar_url} />
+          <div class="card-body">{item.login}</div>
+        </div>
+      ))}
+      ;
     </div>
   );
 }
+
+render(<App />, document.getElementById("root"));
 
 export default App;
