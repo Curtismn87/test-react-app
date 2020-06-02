@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import "./App.css";
 
 const apiUrl =
-  "http://api.nal.usda.gov/ndb/list?format=json&lt=f&sort=n&api_key=***REMOVED***";
+  "http://api.nal.usda.gov/ndb/list?format=json&lt=f&sort=n&api_key=" + process.env.REACT_APP_USDA_API_KEY;
 
 function App() {
   const [items, setItems] = React.useState([]);
