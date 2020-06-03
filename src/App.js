@@ -20,12 +20,10 @@ function App() {
   }, []);
 
   const usdaItems = items.map((item) => (
-    <div class="card" key={item.id}>
-      <div class="card-body">{item.name}</div>
-    </div>
+      <p class="food col-sm" key={item.id}>{item.id}</p>
   ));
 
-  return <div class="container">{usdaItems};</div>;
+  return <div class="container"><div class="row">{usdaItems}</div></div>;
 }
 
 render(<App />, document.getElementById("root"));
