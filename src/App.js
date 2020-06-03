@@ -13,14 +13,13 @@ function App() {
       var data = await fetch(apiUrl).then((res) => {
         return res.json();
       });
-
       setItems(data.list.item);
     }
     fetchData();
   }, []);
 
   const usdaItems = items.map((item) => (
-      <p class="food col-sm" key={item.id}>{item.id}</p>
+      <p class="food col-sm" key={item.id}>{item.name}</p>
   ));
 
   return <div class="container"><div class="row">{usdaItems}</div></div>;
