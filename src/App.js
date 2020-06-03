@@ -19,10 +19,10 @@ function App() {
   }, []);
 
   const usdaItems = items.map((item) => (
-      <p class="food col-sm" key={item.id}>{item.name}</p>
+      <p className="food col-sm" key={item.id}>{item.name}</p>
   ));
 
-  return <div class="container"><div class="row">{usdaItems}</div></div>;
+  return <div className="container"><div className="row">{usdaItems}</div></div>;
 }
 
 render(<App />, document.getElementById("root"));
