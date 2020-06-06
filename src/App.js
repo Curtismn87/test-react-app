@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import "./App.css";
 
 const apiUrl =
-  "http://api.nal.usda.gov/ndb/list?format=json&lt=f&sort=n&api_key=" + process.env.REACT_APP_USDA_API_KEY;
+  "https://api.nal.usda.gov/fdc/v1/foods/list?format=json&lt=f&sort=n&api_key=" + process.env.REACT_APP_USDA_API_KEY;
 
 function App() {
   const [items, setItems] = React.useState([]);
@@ -13,13 +13,18 @@ function App() {
       var data = await fetch(apiUrl).then((res) => {
         return res.json();
       });
-      setItems(data.list.item);
+      console.log(data);
+      setItems(data);
     }
     fetchData();
   }, []);
 
   const usdaItems = items.map((item) => (
-      <p className="food col-sm" key={item.id}>{item.name}</p>
+      <div className="food col-sm" key={item.fdcId}><p>{item.description}</p>
+      <div key={item.foodCode}>{item.foodNutrients.map((nutrients) => (
+        <div key={nutrients.number}>{nutrients.name}: {nutrients.amount}</div>
+        ))}</div>
+      </div>
   ));
 
   return <div className="container"><div className="row">{usdaItems}</div></div>;
