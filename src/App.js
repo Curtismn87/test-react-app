@@ -19,10 +19,13 @@ function App() {
     fetchData();
   }, []);
 
+  const filterItems = items.forEach(food => food.foodNutrients.forEach(nutrient => {if (nutrient.name === "Protein" || nutrient.name === "Total lipid (fat)" || nutrient.name === "Carbohydrate, by difference" ){ return; }; delete nutrient.name; delete nutrient.amount; delete nutrient.unitName; }
+                                                        )
+                                    )
   const usdaItems = items.map((item) => (
       <div className="food col-sm" key={item.fdcId}><p>{item.description}</p>
       <div key={item.foodCode}>{item.foodNutrients.map((nutrients) => (
-        <div key={nutrients.number}>{nutrients.name}: {nutrients.amount}</div>
+        <div key={nutrients.number}>{nutrients.name} {nutrients.amount}{nutrients.unitName}</div>
         ))}</div>
       </div>
   ));
