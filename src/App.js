@@ -24,13 +24,11 @@ function App() {
           return;
       }
       delete nutrient.name;
-      delete nutrient.amount;
-      delete nutrient.unitName;
   }));
   const usdaItems = items.map((item) => (
       <div className="food col-sm" key={item.fdcId}><p>{item.description}</p>
-      <div key={item.foodCode}>{item.foodNutrients.map((nutrients) => (
-        <div key={nutrients.number}>{nutrients.name} {nutrients.amount}{nutrients.unitName}</div>
+      <div key={item.foodCode}>{item.foodNutrients.filter(notNull => notNull.name).map((nutrients) => (
+        <div key={nutrients.number}>{nutrients.name}: {nutrients.amount}{nutrients.unitName.toLowerCase()}</div>
         ))}</div>
       </div>
   ));
