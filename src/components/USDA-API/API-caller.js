@@ -2,7 +2,7 @@ import apiUrls from "../../config/api-urls";
 
 const nutritionApiUrl = apiUrls.nutritionUrl + process.env.REACT_APP_USDA_API_KEY;
 
-export const fetchNutritionInfo = async (id) => {
+export const fetchNutritionInfo = async () => {
 
   const settings = {
     method: 'GET',
