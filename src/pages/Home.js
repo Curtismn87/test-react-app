@@ -1,20 +1,14 @@
 import React from "react";
-
-const apiUrl =
-    "https://api.nal.usda.gov/fdc/v1/foods/list?format=json&lt=f&sort=n&api_key=" + process.env.REACT_APP_USDA_API_KEY;
+import { fetchNutritionInfo } from "../components/USDA-API/API-caller";
 
 const Home = () => {
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
-    async function fetchData() {
-      var data = await fetch(apiUrl).then((res) => {
-        return res.json();
-      });
-      console.log(data);
-      setItems(data);
-    }
-    fetchData();
+    fetchNutritionInfo()
+    .then((items) => {
+      setItems(items);
+    })
   }, []);
 
   const usdaItems = items.map((item) => (
