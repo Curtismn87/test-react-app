@@ -1,6 +1,7 @@
 import apiUrls from "../../config/api-urls";
 
 const nutritionApiUrl = apiUrls.nutritionUrl + process.env.REACT_APP_USDA_API_KEY;
+const searchApiUrl = apiUrls.searchUrl + process.env.REACT_APP_USDA_API_KEY;
 
 export const fetchNutritionInfo = async () => {
 
@@ -12,6 +13,22 @@ export const fetchNutritionInfo = async () => {
   };
 
   return await fetch(nutritionApiUrl, settings)
+  .then(response => response.json())
+  .catch(e =>  e);
+};
+
+export const queryNutritionInfo = async (body) => {
+
+  const settings = {
+    method: 'POST',
+    headers: new Headers({
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+    }),
+    body: JSON.stringify(body)
+  };
+
+  return await fetch(searchApiUrl, settings)
   .then(response => response.json())
   .catch(e =>  e);
 };
