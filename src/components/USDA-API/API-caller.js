@@ -17,7 +17,17 @@ export const fetchNutritionInfo = async () => {
   .catch(e =>  e);
 };
 
-export const queryNutritionInfo = async (body) => {
+export const queryNutritionInfo = async (query) => {
+
+  let body = {query: query,
+    dataType: [
+    "Foundation",
+    "SR Legacy"
+    ],
+    pageSize: 25, //TODO: make this a dropdown option
+    sortBy: "dataType.keyword", //TODO: make this a dropdown option
+    sortOrder: "asc", //TODO: make this a dropdown option
+  };
 
   const settings = {
     method: 'POST',
