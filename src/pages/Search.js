@@ -18,7 +18,7 @@ const Search = () => {
   const usdaItems = items.map((item) => (
       <div key={item.fdcId} style={Cards.spacing}>
       <Card>
-        <CardBody>
+        <CardBody style={Cards.fixedSize}>
           <CardTitle>
             {item.description}
           </CardTitle>
@@ -44,7 +44,7 @@ const Search = () => {
       <div className="row">
         <InputGroup>
           <InputGroupText>
-            <Input value={query} onInput={e => setQuery(e.target.value)} placeholder="Search Here..."/>
+            <Input onChange={e => setQuery(e.target.value)} placeholder="Search Here..."/>
           </InputGroupText>
           <Button outline color="primary" onClick={queryFoods}>Find Foods</Button>{' '}
         </InputGroup>

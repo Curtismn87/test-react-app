@@ -16,7 +16,7 @@ const Home = () => {
 
   const usdaItems = items.map((item) => (
       <div key={item.fdcId} style={Cards.spacing}>
-        <Card>
+        <Card style={Cards.fixedSize}>
           <CardBody>
             <CardTitle>
               {item.description}
