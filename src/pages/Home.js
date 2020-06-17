@@ -1,6 +1,9 @@
 import React from "react";
 import { fetchNutritionInfo } from "../components/USDA-API/API-caller";
 
+import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
+import * as Cards from "../styles/Cards";
+
 const Home = () => {
   const [items, setItems] = React.useState([]);
 
@@ -12,10 +15,19 @@ const Home = () => {
   }, []);
 
   const usdaItems = items.map((item) => (
-      <div className="food col-sm" key={item.fdcId}><p>{item.description}</p>
-        <div key={item.foodCode}>{item.foodNutrients.map((nutrients) => (
-            <div key={nutrients.number}>{nutrients.name}: {nutrients.amount}</div>
-        ))}</div>
+      <div key={item.fdcId} style={Cards.spacing}>
+        <Card>
+          <CardBody>
+            <CardTitle>
+              {item.description}
+            </CardTitle>
+            <CardText>
+              {item.foodNutrients.map((nutrients) => (
+                  <div key={nutrients.number}>{nutrients.name}: {nutrients.amount}</div>
+              ))}
+            </CardText>
+          </CardBody>
+        </Card>
       </div>
   ));
 
