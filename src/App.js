@@ -1,35 +1,18 @@
 import React from "react";
-import { render } from "react-dom";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import "./App.css";
 
-const apiUrl =
-  "https://api.nal.usda.gov/fdc/v1/foods/list?format=json&lt=f&sort=n&api_key=" + process.env.REACT_APP_USDA_API_KEY;
+// Pages
+import Home from './pages/Home';
 
 function App() {
-  const [items, setItems] = React.useState([]);
-
-  React.useEffect(() => {
-    async function fetchData() {
-      var data = await fetch(apiUrl).then((res) => {
-        return res.json();
-      });
-      console.log(data);
-      setItems(data);
-    }
-    fetchData();
-  }, []);
-
-  const usdaItems = items.map((item) => (
-      <div className="food col-sm" key={item.fdcId}><p>{item.description}</p>
-      <div key={item.foodCode}>{item.foodNutrients.map((nutrients) => (
-        <div key={nutrients.number}>{nutrients.name}: {nutrients.amount}</div>
-        ))}</div>
-      </div>
-  ));
-
-  return <div className="container"><div className="row">{usdaItems}</div></div>;
+  return(
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={Home} />
+        </Switch>
+      </BrowserRouter>
+      )
 }
-
-render(<App />, document.getElementById("root"));
 
 export default App;

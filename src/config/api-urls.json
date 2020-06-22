@@ -1,0 +1,3 @@
+{
+  "nutritionUrl": "https://api.nal.usda.gov/fdc/v1/foods/list?format=json&lt=f&sort=n&api_key="
+}
